@@ -1,0 +1,128 @@
+<header class="navbar-light navbar-sticky header-static">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+      <a class="navbar-brand" href="index.html">
+        <img class="navbar-brand-item dark-mode-item" src="https://static.hephe.net/images/profile/pp_circle.png" alt="logo">
+      </a>
+
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+              aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="text-body h6 d-none d-sm-inline-block">Menu</span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll mx-auto">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link active">Accueil</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav flex-nowrap align-items-center">
+        <!-- Nav Search -->
+        <div class="nav-item dropdown dropdown-toggle-icon-none nav-search">
+          <a class="nav-link dropdown-toggle" role="button" href="#" id="navSearch" data-bs-toggle="dropdown"
+             aria-expanded="false">
+            <i class="bi bi-search fs-4"> </i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end shadow rounded p-2" aria-labelledby="navSearch">
+            <form class="input-group">
+              <input class="form-control border-success" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success m-0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--  <a class="navbar-brand" routerLink="/series">Serie-Stream</a>-->
+<!--  <button-->
+<!--    class="navbar-toggler"-->
+<!--    type="button"-->
+<!--    data-toggle="collapse"-->
+<!--    data-target="#navbarColor01"-->
+<!--    aria-controls="navbarColor01"-->
+<!--    aria-expanded="false"-->
+<!--    aria-label="Toggle navigation"-->
+<!--  >-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+
+<!--  <div *ngIf="isAuth" class="collapse navbar-collapse" id="navbarColor01">-->
+<!--    <ul class="navbar-nav mr-auto">-->
+<!--      <li class="nav-item active">-->
+<!--        <a class="nav-link" routerLink="/series">Accueil</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item active">-->
+<!--        <a class="nav-link" routerLink="/{{randomUrl}}">Lien 404</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item dropdown">-->
+<!--        <div class="btn-group" dropdown>-->
+<!--          <a-->
+<!--            id="button-animated"-->
+<!--            dropdownToggle-->
+<!--            type="button"-->
+<!--            class="nav-link dropdown-toggle"-->
+<!--            aria-controls="dropdown-animated"-->
+<!--          >-->
+<!--            Séries-->
+<!--            <span class="caret"></span>-->
+<!--          </a>-->
+<!--          <ul-->
+<!--            id="dropdown-animated"-->
+<!--            *dropdownMenu-->
+<!--            class="dropdown-menu"-->
+<!--            role="menu"-->
+<!--            aria-labelledby="button-animated"-->
+<!--          >-->
+<!--            <li role="menuitem">-->
+<!--              <a class="dropdown-item" routerLink="/series">Liste des séries</a>-->
+<!--            </li>-->
+<!--            <li class="divider dropdown-divider"></li>-->
+<!--            <li role="menuitem">-->
+<!--              <a class="dropdown-item text-success" routerLink="/series/add">-->
+<!--                Ajouter une série-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <ul class="navbar-nav">-->
+<!--      <li class="nav-item dropdown">-->
+<!--        <div class="btn-group" dropdown>-->
+<!--          <a-->
+<!--            id="button-animated"-->
+<!--            dropdownToggle-->
+<!--            type="button"-->
+<!--            class="nav-link dropdown-toggle"-->
+<!--            aria-controls="dropdown-animated"-->
+<!--          >-->
+<!--            Mon compte-->
+<!--            <span class="caret"></span>-->
+<!--          </a>-->
+<!--          <ul-->
+<!--            id="dropdown-animated"-->
+<!--            *dropdownMenu-->
+<!--            class="dropdown-menu"-->
+<!--            role="menu"-->
+<!--            aria-labelledby="button-animated"-->
+<!--          >-->
+<!--            <li role="menuitem">-->
+<!--              <a class="dropdown-item text-danger" (click)="onClickSignOut()">-->
+<!--                Déconnexion-->
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--</nav>-->

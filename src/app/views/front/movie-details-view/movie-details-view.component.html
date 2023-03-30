@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div class="container mt-3">
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/movies">Movies</a></li>
+        <li class="breadcrumb-item active">{{ movie.title }}</li>
+    </ol>
+    <hr>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card border-primary">
+                <img src="{{ movie.imageUrl }}" alt="Photo" class="card-img-top">
+
+            </div>
+        </div>
+
+        <div class="col-8">
+            <div class="card border-secondary">
+              <div class="card-body">
+                <h3 class="card-title">{{ movie.title }}</h3>
+                <p class="card-text"><strong class="text-success">Sortie le </strong>{{ movie.releasedAt | date:'dd MMMM y' }}</p>
+              </div>
+                <div class="card-body">
+                    <p class="card-text">{{ movie.synopsis }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--  <div class="card card-outline-secondary my-4">-->
+<!--    <div class="card-header">-->
+<!--      Commentaires-->
+<!--    </div>-->
+<!--    <div app-comment *ngFor="let com of this.movie.comments" [comment]=com class="card-body"></div>-->
+<!--  </div>-->
+</div>

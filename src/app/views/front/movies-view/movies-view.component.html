@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+
+<section class="pt-4 position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="mb-3">
+          <h2 class="m-0"><i class="bi bi-hourglass-top me-2"></i>Latest added movies</h2>
+          <p>Latest breaking news, pictures, videos, and special reports</p>
+        </div>
+        <div class="row">
+          <app-movie-card class="col-sm-4" *ngFor="let movie of allMovies" [movie]="movie"></app-movie-card>
+        </div>
+      </div>
+      <div class="col-lg-3 mt-5 mt-lg-0">
+        <div>
+          <h4 class="mt-4 mb-3">Categories</h4>
+
+          <app-category-card *ngFor="let category of allCategories" [category]="category"></app-category-card>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
