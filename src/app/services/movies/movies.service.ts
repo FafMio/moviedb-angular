@@ -115,9 +115,9 @@ export class MoviesService {
     return this.httpClient.get('http://127.0.0.1:8080/api/movie/' + fId);
   }
 
-  addMovie(fSerie: any): void {
+  addMovie(movie: any): void {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.httpClient.post('http://127.0.0.1:8080/api/movie', fSerie, {headers}).subscribe(
+    this.httpClient.post('http://127.0.0.1:8080/api/movie', movie, {headers}).subscribe(
       (res: any) => {
         this.movies.push(res);
         this.movieSubject.next(this.getAllMovies());
@@ -144,31 +144,25 @@ export class MoviesService {
       );
   }
 
-  updateMovie(fSerie: Movie): void {
+  updateMovie(movie: Movie): void {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
-    // const data = {
-    //   name: fSerie.name,
-    //   description: fSerie.description,
-    //   critical: fSerie.critical,
-    //   seasons: fSerie.seasons,
-    //   releaseDate: new Date(fSerie.release_date).toISOString(),
-    //   poster: fSerie.picture,
-    // };
-
     const data = {
-      id: fSerie.id,
-      title: fSerie.title,
-      synopsis: fSerie.synopsis,
-      releasedAt: fSerie.releasedAt,
-      imageUrl: fSerie.imageUrl,
-      originCountry: fSerie.originCountry,
-      originCountryShort: fSerie.originCountryShort,
-      tmdbId: fSerie.tmdbId,
-      verified: fSerie.isVerified
+      id: movie.id,
+      title: movie.title,
+      synopsis: movie.synopsis,
+      releasedAt: movie.releasedAt,
+      imageUrl: movie.imageUrl,
+      originCountry: movie.originCountry,
+      originCountryShort: movie.originCountryShort,
+      tmdbId: movie.tmdbId,
+      verified: movie.isVerified,
+      categories: movie.categories.map(id => {
+        return id;
+      }),
     };
 
-    this.httpClient.put(
-      'http://127.0.0.1:8080/api/movie/' + fSerie.id,
+    this.httpClient.post(
+      'http://127.0.0.1:8080/api/movie/' + movie.id,
       data,
       {headers}
     ).subscribe(

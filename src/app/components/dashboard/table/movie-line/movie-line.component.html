@@ -21,7 +21,7 @@
       <i class="bi bi-pencil-fill"></i>
     </a>
     <span *ngIf="authService.isModerator() || authService.isAdmin()" (click)="(movie.isVerified) ? onClickUnverify() : onClickVerify()" class="btn btn-light btn-round mb-0">
-      <div *ngIf="isUpdating" class="spinner-border spinner-border-sm text-warning" role="status"></div>
+      <div *ngIf="isUpdating" class="spinner-border spinner-border-sm" role="status"></div>
       <i *ngIf="!isUpdating" class="bi bi-{{ iconVerify }}"></i>
     </span>
   </div>

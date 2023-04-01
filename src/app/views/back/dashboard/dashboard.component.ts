@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MoviesService} from '../../../services/movies/movies.service';
 import {UsersService} from '../../../services/users/users.service';
 import {Movie} from '../../../models/movie.model';
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,10 +17,12 @@ export class DashboardComponent implements OnInit {
   userCount: number;
   movies: Array<Movie>;
   unverifiedMovies: Array<Movie>;
+  showUnverified = true;
 
   constructor(
     private moviesService: MoviesService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {
   }
 

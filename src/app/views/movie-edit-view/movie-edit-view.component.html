@@ -3,7 +3,7 @@
 <main>
   <section class="py-4">
     <div class="container mt-3">
-      <div class="row g-4">
+      <div class="row g-4" *ngIf="movie">
         <div class="row">
           <div class="col-12">
             <h1 class="mb-0 h2">Edit movie : {{ movie.title }}</h1>
@@ -11,18 +11,16 @@
         </div>
         <div class="col-12">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/movies">Séries</a></li>
-            <li class="breadcrumb-item"><a routerLink="/movies/{{ movie.id }}"> #{{ movie.id }}</a></li>
-            <li class="breadcrumb-item active">Modifier</li>
+            <li class="breadcrumb-item"><a routerLink="/dashboard">Movies</a></li>
+            <li class="breadcrumb-item"><a routerLink="/movie/{{ movie.id }}"> #{{ movie.id }}</a></li>
+            <li class="breadcrumb-item active">Edit</li>
           </ol>
         </div>
         <div class="col-12">
           <div class="card border h-100">
-            <div class="card-body">
-
-              <form (ngSubmit)="onSubmitEditMovie()"
-                    [formGroup]="editMovieForm">
-
+            <form (ngSubmit)="onSubmitEditMovie()"
+                  [formGroup]="editMovieForm">
+              <div class="card-body">
                 <div class="row">
                   <div class="col-4 mb-3">
                     <div class="form-group">
@@ -50,14 +48,13 @@
                       >
                     </div>
                   </div>
-
                   <div class="col-6 mb-3">
                     <div class="form-group">
-                      <label for="releaseAt">Release Date (yyyy-mm-jj)</label>
+                      <label for="releasedAt">Release Date (yyyy-mm-jj)</label>
                       <input
-                        type="text"
-                        formControlName="releaseAt"
-                        id="releaseAt"
+                        type="string"
+                        formControlName="releasedAt"
+                        id="releasedAt"
                         class="form-control"
                         required
                         maxlength="10"
@@ -77,7 +74,6 @@
                       >
                     </div>
                   </div>
-
                   <div class="col-4 mb-3">
                     <div class="form-group">
                       <label for="originCountry">Country</label>
@@ -102,6 +98,7 @@
                       >
                     </div>
                   </div>
+
                   <div class="col-12 mb-3">
                     <div class="form-group">
                       <label for="synopsis">Synopsis</label>
@@ -117,10 +114,26 @@
                     </div>
                   </div>
 
+                  <div class="col-12 mb-3">
+                    <div class="form-group">
+                      <label for="categories">Catégories</label>
+                      <select
+                        id="categories"
+                        class="form-select"
+                        formControlName="categories"
+                        multiple
+                      ></select>
+                    </div>
+                  </div>
                 </div>
-              </form>
-
-            </div>
+              </div>
+              <div class="card-footer">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                >Edit</button>
+              </div>
+            </form>
           </div>
         </div>
 
@@ -128,96 +141,3 @@
     </div>
   </section>
 </main>
-
-
-<!--  -->
-<!--    <hr>-->
-
-<!--    <form-->
-<!--        (ngSubmit)="onSubmitEditMovie()"-->
-<!--        [formGroup]="editMovieForm"-->
-<!--    >-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="name">Nom de la série</label>-->
-<!--        <input-->
-<!--            type="text"-->
-<!--            formControlName="name"-->
-<!--            id="name"-->
-<!--            class="form-control"-->
-<!--            required-->
-<!--            maxlength="50"-->
-<!--        >-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="description">Description de la série</label>-->
-<!--        <textarea-->
-<!--            type="text"-->
-<!--            formControlName="description"-->
-<!--            id="description"-->
-<!--            class="form-control"-->
-<!--            required-->
-<!--            maxlength="2000"-->
-<!--        ></textarea>-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="critical">Critique de la série</label>-->
-<!--        <textarea-->
-<!--            formControlName="critical"-->
-<!--            id="critical"-->
-<!--            class="form-control"-->
-<!--            required-->
-<!--            maxlength="2000"-->
-<!--        ></textarea>-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="seasons">Nombre de saison(s)</label>-->
-<!--        <input-->
-<!--            type="number"-->
-<!--            formControlName="seasons"-->
-<!--            id="seasons"-->
-<!--            class="form-control"-->
-<!--            required-->
-<!--            min="1"-->
-<!--        >-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="release_date">Date de sortie</label>-->
-<!--        <input-->
-<!--            type="text"-->
-<!--            formControlName="release_date"-->
-<!--            id="release_date"-->
-<!--            class="form-control"-->
-<!--            bsDatepicker-->
-<!--            required-->
-<!--            [bsConfig]="{ isAnimated: true }"-->
-<!--        >-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="picture">URL du poster de la série</label>-->
-<!--        <input-->
-<!--            type="text"-->
-<!--            formControlName="picture"-->
-<!--            id="picture"-->
-<!--            class="form-control"-->
-<!--            required-->
-<!--        >-->
-<!--        <small id="picture" class="form-text text-muted">Voici une image de test : https://placehold.it/1000x1400</small>-->
-<!--    </div>-->
-
-<!--    <button-->
-<!--        type="submit"-->
-<!--        class="btn btn-primary btn-block"-->
-<!--        [disabled]="editMovieForm.invalid"-->
-<!--        >Modifier</button>-->
-<!--    <a routerLink="/movies">Retour à la liste</a>-->
-<!--    </form>-->
-
-<!--</div>-->
-
-

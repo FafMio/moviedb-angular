@@ -39,9 +39,7 @@ export class MovieLineComponent implements OnInit {
       (res: any) => {
         this.isUpdating = false;
         this.iconVerify = 'check2-all';
-        setTimeout(() => {
-          this.moviesService.init();
-        }, 1500);
+        this.moviesService.init();
       },
       (err: any) => {
         console.log(err);
@@ -55,9 +53,7 @@ export class MovieLineComponent implements OnInit {
       (res: any) => {
         this.isUpdating = false;
         this.iconVerify = 'x';
-        setTimeout(() => {
-          this.moviesService.init();
-        }, 1500);
+        this.moviesService.init();
       },
       (err: any) => {
         console.log(err);

@@ -7,8 +7,9 @@
         <div class="col-12">
           <div class="row g-4">
 
-            <app-dashboard-card class="col-6" [counter]="movieCount.toString()" [icon]="'film'" [label]="'Movies'"></app-dashboard-card>
-            <app-dashboard-card class="col-6" [counter]="userCount.toString()" [label]="'Users'"></app-dashboard-card>
+            <app-dashboard-card class="col-4" [counter]="movieCount.toString()" [icon]="'film'" [label]="'Movies'"></app-dashboard-card>
+            <app-dashboard-card class="col-4" [counter]="unverifiedCount.toString()" [icon]="'film'" [label]="'Movies pending'" [bgColor]="'warning'" [textColor]="'warning'"></app-dashboard-card>
+            <app-dashboard-card class="col-4" [counter]="userCount.toString()" [label]="'Users'"></app-dashboard-card>
 
           </div>
         </div>
@@ -23,7 +24,10 @@
                   <span class="badge bg-success bg-opacity-10 text-success me-2">{{ verifiedCount }}</span>
                   <span class="badge bg-warning bg-opacity-10 text-warning me-2">{{ unverifiedCount }}</span>
                 </h5>
-                <a href="/movies/add" class="btn btn-sm btn-primary mb-0">Add New</a>
+                <div>
+                  <a href="/movies/add" class="btn btn-sm btn-primary mb-0 me-2">Add New</a>
+                  <span (click)="showUnverified = !showUnverified" class="btn btn-sm mb-0 me-2" [class]="{'btn-warning': showUnverified, 'btn-outline-warning': !showUnverified}">{{ showUnverified ? 'Hide' : 'Show' }} unverified</span>
+                </div>
               </div>
             </div>
 
@@ -43,33 +47,35 @@
 
                   <tbody class="border-top-0">
 
-                  <tr app-movie-line *ngFor="let unverifMovie of unverifiedMovies" [movie]="unverifMovie"></tr>
+                  <ng-container *ngIf="showUnverified">
+                    <tr app-movie-line *ngFor="let unverifMovie of unverifiedMovies" [movie]="unverifMovie"></tr>
+                  </ng-container>
                   <tr app-movie-line *ngFor="let movie of movies" [movie]="movie"></tr>
 
                   </tbody>
                 </table>
               </div>
 
-<!--              &lt;!&ndash; Pagination START &ndash;&gt;-->
-<!--              <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">-->
-<!--                &lt;!&ndash; Content &ndash;&gt;-->
-<!--                <p class="mb-sm-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>-->
-<!--                &lt;!&ndash; Pagination &ndash;&gt;-->
-<!--                <nav class="mb-sm-0 d-flex justify-content-center" aria-label="navigation">-->
-<!--                  <ul class="pagination pagination-sm pagination-bordered mb-0">-->
-<!--                    <li class="page-item disabled">-->
-<!--                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Prev</a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--                    <li class="page-item active"><a class="page-link" href="#">2</a></li>-->
-<!--                    <li class="page-item disabled"><a class="page-link" href="#">..</a></li>-->
-<!--                    <li class="page-item"><a class="page-link" href="#">15</a></li>-->
-<!--                    <li class="page-item">-->
-<!--                      <a class="page-link" href="#">Next</a>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </nav>-->
-<!--              </div>-->
+              <!--              &lt;!&ndash; Pagination START &ndash;&gt;-->
+              <!--              <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">-->
+              <!--                &lt;!&ndash; Content &ndash;&gt;-->
+              <!--                <p class="mb-sm-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>-->
+              <!--                &lt;!&ndash; Pagination &ndash;&gt;-->
+              <!--                <nav class="mb-sm-0 d-flex justify-content-center" aria-label="navigation">-->
+              <!--                  <ul class="pagination pagination-sm pagination-bordered mb-0">-->
+              <!--                    <li class="page-item disabled">-->
+              <!--                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Prev</a>-->
+              <!--                    </li>-->
+              <!--                    <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+              <!--                    <li class="page-item active"><a class="page-link" href="#">2</a></li>-->
+              <!--                    <li class="page-item disabled"><a class="page-link" href="#">..</a></li>-->
+              <!--                    <li class="page-item"><a class="page-link" href="#">15</a></li>-->
+              <!--                    <li class="page-item">-->
+              <!--                      <a class="page-link" href="#">Next</a>-->
+              <!--                    </li>-->
+              <!--                  </ul>-->
+              <!--                </nav>-->
+              <!--              </div>-->
 
             </div>
           </div>
