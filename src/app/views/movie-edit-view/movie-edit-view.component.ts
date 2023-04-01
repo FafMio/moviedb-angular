@@ -13,7 +13,7 @@ export class MovieEditViewComponent implements OnInit {
 
   movie: Movie;
 
-  editSerieForm: FormGroup;
+  editMovieForm: FormGroup;
 
   constructor(
     private moviesService: MoviesService,
@@ -38,7 +38,7 @@ export class MovieEditViewComponent implements OnInit {
 
 
   initForm(): void {
-    this.editSerieForm = this.formBuilder.group({
+    this.editMovieForm = this.formBuilder.group({
       // name: [this.movie.name, Validators.required],
       // description: [this.movie.description, Validators.required],
       // critical: [this.movie.critical, Validators.required],
@@ -49,8 +49,8 @@ export class MovieEditViewComponent implements OnInit {
   }
 
 
-  onSubmitEditSerie(): void {
-    const formValue = this.editSerieForm.value;
+  onSubmitEditMovie(): void {
+    const formValue = this.editMovieForm.value;
     // this.movie.name = formValue.name
     // this.movie.description = formValue.description
     // this.movie.critical = formValue.critical

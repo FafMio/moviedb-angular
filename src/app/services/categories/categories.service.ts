@@ -29,10 +29,9 @@ export class CategoriesService {
   getAllCategories(): Array<Category> {
     const array: Array<Category> = [];
     this.httpClient
-      .get('http://127.0.0.1:8080/api/category/')
+      .get('http://127.0.0.1:8080/api/category/?size=50')
       .subscribe(
         (res: any) => {
-          console.log(res);
           const data = res.content;
           data.forEach(s => {
             const currentCategory = new Category(
@@ -83,7 +82,7 @@ export class CategoriesService {
 
   updateCategory(category: Category): void {
     console.log(category);
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.token.toString());
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
     const data = {
       id: category.id,
       title: category.title,

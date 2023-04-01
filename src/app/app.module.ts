@@ -22,7 +22,12 @@ import { CategoryCardComponent } from './components/category-card/category-card.
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { CategoryBadgeComponent } from './components/category-badge/category-badge.component';
 import { MoviesCategoryViewComponent } from './views/front/movies-category-view/movies-category-view.component';
-import {SplitPipe} from "./pipe/split-pipe";
+import {SplitPipe} from './pipes/split-pipe';
+import { RegisterViewComponent } from './views/auth/register-view/register-view.component';
+import { NewCategoryComponent } from './views/back/category/new-category/new-category.component';
+import { DashboardComponent } from './views/back/dashboard/dashboard.component';
+import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
+import { MovieLineComponent } from './components/dashboard/table/movie-line/movie-line.component';
 
 
 @NgModule({
@@ -40,8 +45,12 @@ import {SplitPipe} from "./pipe/split-pipe";
     CategoryBadgeComponent,
     MovieCardComponent,
     MoviesCategoryViewComponent,
-
-    SplitPipe
+    SplitPipe,
+    RegisterViewComponent,
+    NewCategoryComponent,
+    DashboardComponent,
+    DashboardCardComponent,
+    MovieLineComponent,
   ],
   imports: [
     BrowserModule,

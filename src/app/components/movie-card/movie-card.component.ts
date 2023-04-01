@@ -14,7 +14,6 @@ export class MovieCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.movie);
   }
 
 }

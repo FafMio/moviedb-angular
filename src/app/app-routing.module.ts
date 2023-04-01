@@ -8,16 +8,23 @@ import {MovieDetailsViewComponent} from './views/front/movie-details-view/movie-
 import {MovieNewViewComponent} from './views/movies-new-view/movie-new-view.component';
 import {MovieEditViewComponent} from './views/movie-edit-view/movie-edit-view.component';
 import {MoviesCategoryViewComponent} from './views/front/movies-category-view/movies-category-view.component';
+import {RegisterViewComponent} from './views/auth/register-view/register-view.component';
+import {NewCategoryComponent} from './views/back/category/new-category/new-category.component';
+import {DashboardComponent} from './views/back/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: '', component: MoviesViewComponent},
 
   {path: 'login', component: LoginViewComponent},
-  {path: 'movies', component: MoviesViewComponent},
-  {path: 'movies/category/:title', component: MoviesCategoryViewComponent},
+  {path: 'register', component: RegisterViewComponent},
+  {path: 'category/:title', component: MoviesCategoryViewComponent},
+
+  {path: 'dashboard', canActivate: [AuthGuardGuard], component: DashboardComponent},
+  {path: 'dashboard/category/:id', canActivate: [AuthGuardGuard], component: NewCategoryComponent},
+  {path: 'movie/edit/:id', canActivate: [AuthGuardGuard], component: MovieEditViewComponent},
+
   {path: 'movie/:id', component: MovieDetailsViewComponent},
   {path: 'movies/add', canActivate: [AuthGuardGuard], component: MovieNewViewComponent},
-  {path: 'movies/:id/edit', canActivate: [AuthGuardGuard], component: MovieEditViewComponent},
 
   {path: '**', component: NotFoundViewComponent},
 ];

@@ -1,99 +1,223 @@
 <app-header></app-header>
 
-<div class="container mt-3">
+<main>
+  <section class="py-4">
+    <div class="container mt-3">
+      <div class="row g-4">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="mb-0 h2">Edit movie : {{ movie.title }}</h1>
+          </div>
+        </div>
+        <div class="col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/movies">Séries</a></li>
+            <li class="breadcrumb-item"><a routerLink="/movies/{{ movie.id }}"> #{{ movie.id }}</a></li>
+            <li class="breadcrumb-item active">Modifier</li>
+          </ol>
+        </div>
+        <div class="col-12">
+          <div class="card border h-100">
+            <div class="card-body">
 
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/movies">Séries</a></li>
-        <li class="breadcrumb-item"><a routerLink="/movies/{{ movie.id }}"> #{{ movie.id }}</a></li>
-        <li class="breadcrumb-item active">Modifier</li>
-    </ol>
-    <hr>
+              <form (ngSubmit)="onSubmitEditMovie()"
+                    [formGroup]="editMovieForm">
 
-    <form
-        (ngSubmit)="onSubmitEditSerie()"
-        [formGroup]="editSerieForm"
-    >
+                <div class="row">
+                  <div class="col-4 mb-3">
+                    <div class="form-group">
+                      <label for="title">Title</label>
+                      <input
+                        type="text"
+                        formControlName="title"
+                        id="title"
+                        class="form-control"
+                        required
+                        maxlength="20"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-2 mb-3">
+                    <div class="form-group">
+                      <label for="tmdbId">TMDB Id</label>
+                      <input
+                        type="text"
+                        formControlName="tmdbId"
+                        id="tmdbId"
+                        class="form-control"
+                        required
+                        maxlength="20"
+                      >
+                    </div>
+                  </div>
 
-    <div class="form-group">
-        <label for="name">Nom de la série</label>
-        <input
-            type="text"
-            formControlName="name"
-            id="name"
-            class="form-control"
-            required
-            maxlength="50"
-        >
+                  <div class="col-6 mb-3">
+                    <div class="form-group">
+                      <label for="releaseAt">Release Date (yyyy-mm-jj)</label>
+                      <input
+                        type="text"
+                        formControlName="releaseAt"
+                        id="releaseAt"
+                        class="form-control"
+                        required
+                        maxlength="10"
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-6 mb-3">
+                    <div class="form-group">
+                      <label for="imageUrl">Cover URL</label>
+                      <input
+                        type="text"
+                        formControlName="imageUrl"
+                        id="imageUrl"
+                        class="form-control"
+                        required
+                      >
+                    </div>
+                  </div>
+
+                  <div class="col-4 mb-3">
+                    <div class="form-group">
+                      <label for="originCountry">Country</label>
+                      <input
+                        type="text"
+                        formControlName="originCountry"
+                        id="originCountry"
+                        class="form-control"
+                        required
+                      >
+                    </div>
+                  </div>
+                  <div class="col-2 mb-3">
+                    <div class="form-group">
+                      <label for="originCountryShort">Country Short</label>
+                      <input
+                        type="text"
+                        formControlName="originCountryShort"
+                        id="originCountryShort"
+                        class="form-control"
+                        required
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12 mb-3">
+                    <div class="form-group">
+                      <label for="synopsis">Synopsis</label>
+                      <textarea
+                        type="text"
+                        formControlName="synopsis"
+                        id="synopsis"
+                        class="form-control"
+                        required
+                        rows="10"
+                        maxlength="10"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
+</main>
 
-    <div class="form-group">
-        <label for="description">Description de la série</label>
-        <textarea
-            type="text"
-            formControlName="description"
-            id="description"
-            class="form-control"
-            required
-            maxlength="2000"
-        ></textarea>
-    </div>
 
-    <div class="form-group">
-        <label for="critical">Critique de la série</label>
-        <textarea
-            formControlName="critical"
-            id="critical"
-            class="form-control"
-            required
-            maxlength="2000"
-        ></textarea>
-    </div>
+<!--  -->
+<!--    <hr>-->
 
-    <div class="form-group">
-        <label for="seasons">Nombre de saison(s)</label>
-        <input
-            type="number"
-            formControlName="seasons"
-            id="seasons"
-            class="form-control"
-            required
-            min="1"
-        >
-    </div>
+<!--    <form-->
+<!--        (ngSubmit)="onSubmitEditMovie()"-->
+<!--        [formGroup]="editMovieForm"-->
+<!--    >-->
 
-    <div class="form-group">
-        <label for="release_date">Date de sortie</label>
-        <input
-            type="text"
-            formControlName="release_date"
-            id="release_date"
-            class="form-control"
-            bsDatepicker
-            required
-            [bsConfig]="{ isAnimated: true }"
-        >
-    </div>
+<!--    <div class="form-group">-->
+<!--        <label for="name">Nom de la série</label>-->
+<!--        <input-->
+<!--            type="text"-->
+<!--            formControlName="name"-->
+<!--            id="name"-->
+<!--            class="form-control"-->
+<!--            required-->
+<!--            maxlength="50"-->
+<!--        >-->
+<!--    </div>-->
 
-    <div class="form-group">
-        <label for="picture">URL du poster de la série</label>
-        <input
-            type="text"
-            formControlName="picture"
-            id="picture"
-            class="form-control"
-            required
-        >
-        <small id="picture" class="form-text text-muted">Voici une image de test : https://placehold.it/1000x1400</small>
-    </div>
+<!--    <div class="form-group">-->
+<!--        <label for="description">Description de la série</label>-->
+<!--        <textarea-->
+<!--            type="text"-->
+<!--            formControlName="description"-->
+<!--            id="description"-->
+<!--            class="form-control"-->
+<!--            required-->
+<!--            maxlength="2000"-->
+<!--        ></textarea>-->
+<!--    </div>-->
 
-    <button
-        type="submit"
-        class="btn btn-primary btn-block"
-        [disabled]="editSerieForm.invalid"
-        >Modifier</button>
-    <a routerLink="/movies">Retour à la liste</a>
-    </form>
+<!--    <div class="form-group">-->
+<!--        <label for="critical">Critique de la série</label>-->
+<!--        <textarea-->
+<!--            formControlName="critical"-->
+<!--            id="critical"-->
+<!--            class="form-control"-->
+<!--            required-->
+<!--            maxlength="2000"-->
+<!--        ></textarea>-->
+<!--    </div>-->
 
-</div>
+<!--    <div class="form-group">-->
+<!--        <label for="seasons">Nombre de saison(s)</label>-->
+<!--        <input-->
+<!--            type="number"-->
+<!--            formControlName="seasons"-->
+<!--            id="seasons"-->
+<!--            class="form-control"-->
+<!--            required-->
+<!--            min="1"-->
+<!--        >-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label for="release_date">Date de sortie</label>-->
+<!--        <input-->
+<!--            type="text"-->
+<!--            formControlName="release_date"-->
+<!--            id="release_date"-->
+<!--            class="form-control"-->
+<!--            bsDatepicker-->
+<!--            required-->
+<!--            [bsConfig]="{ isAnimated: true }"-->
+<!--        >-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label for="picture">URL du poster de la série</label>-->
+<!--        <input-->
+<!--            type="text"-->
+<!--            formControlName="picture"-->
+<!--            id="picture"-->
+<!--            class="form-control"-->
+<!--            required-->
+<!--        >-->
+<!--        <small id="picture" class="form-text text-muted">Voici une image de test : https://placehold.it/1000x1400</small>-->
+<!--    </div>-->
+
+<!--    <button-->
+<!--        type="submit"-->
+<!--        class="btn btn-primary btn-block"-->
+<!--        [disabled]="editMovieForm.invalid"-->
+<!--        >Modifier</button>-->
+<!--    <a routerLink="/movies">Retour à la liste</a>-->
+<!--    </form>-->
+
+<!--</div>-->
 
 

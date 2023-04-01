@@ -1,0 +1,28 @@
+<td><h6 class="course-title mt-2 mt-md-0 mb-0"><a href="#">{{ movie.title }}</a></h6></td>
+<td><h6 class="mb-0">{{ movie.releasedAt|date: 'dd MMM yyyy' }}</h6></td>
+<td>{{ movie.originCountry }} ({{ movie.originCountryShort }})</td>
+<td>
+  <app-category-badge *ngFor="let category of movie.categories" [category]="category"></app-category-badge>
+</td>
+<td>
+  <span
+    class="badge bg-success bg-opacity-10 text-success mb-2"
+    [ngClass]="{'bg-success text-success': movie.isVerified, 'bg-warning text-warning': !movie.isVerified}">
+    {{ movie.isVerified ? 'Verified' : 'Pending' }}
+  </span>
+</td>
+<td>
+  <div class="d-flex gap-2">
+    <span *ngIf="authService.isAdmin()" (click)="onClickDelete()" class="btn btn-light btn-round mb-0">
+      <div *ngIf="isDeleting" class="spinner-border spinner-border-sm text-danger" role="status"></div>
+      <i *ngIf="!isDeleting" class="bi bi-{{ iconDelete }}"></i>
+    </span>
+    <a *ngIf="authService.isModerator() || authService.isAdmin()" href="/movie/edit/{{ movie.id }}" class="btn btn-light btn-round mb-0">
+      <i class="bi bi-pencil-fill"></i>
+    </a>
+    <span *ngIf="authService.isModerator() || authService.isAdmin()" (click)="(movie.isVerified) ? onClickUnverify() : onClickVerify()" class="btn btn-light btn-round mb-0">
+      <div *ngIf="isUpdating" class="spinner-border spinner-border-sm text-warning" role="status"></div>
+      <i *ngIf="!isUpdating" class="bi bi-{{ iconVerify }}"></i>
+    </span>
+  </div>
+</td>

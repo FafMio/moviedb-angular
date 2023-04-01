@@ -2,7 +2,7 @@ import {AuthService} from '../../../services/auth/auth.service';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {MoviesService} from '../../../services/movies/movies.service';
+import {User} from '../../../models/user.model';
 
 @Component({
   selector: 'app-login-view',
@@ -17,8 +17,7 @@ export class LoginViewComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder,
-    private moviesService: MoviesService
+    private formBuilder: FormBuilder
   ) {
   }
 
@@ -41,14 +40,28 @@ export class LoginViewComponent implements OnInit {
       .subscribe(
         (result) => {
           console.log(result);
-          this.moviesService.init();
           this.authService.isLoading = false;
-          this.authService.token = result.accessToken;
-          this.router.navigate(['/series']);
+          this.authService.saveUser(new User(
+            result.id,
+            result.username,
+            result.password,
+            result.email,
+            result.roles.map(role => {
+              return role;
+            }),
+            result.accessToken,
+            result.tokenType,
+          ));
+          this.router.navigate(['/']);
         },
         (error) => {
+          console.log(error);
           this.authService.isLoading = false;
-          this.errorMessage = error;
+          if (error.error.message === undefined) {
+            this.errorMessage = error.statusText;
+          } else {
+            this.errorMessage = error.error.message;
+          }
         }
       );
   }

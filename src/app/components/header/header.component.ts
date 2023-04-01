@@ -1,6 +1,7 @@
-import { UtilsService } from './../../services/utils/utils.service';
-import { AuthService } from './../../services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import {UtilsService} from '../../services/utils/utils.service';
+import {AuthService} from '../../services/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -11,17 +12,18 @@ export class HeaderComponent implements OnInit {
 
   isAuth: boolean;
   randomUrl: string = UtilsService.randomString(20);
+  user: User;
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit(): void {
-    this.isAuth = this.authService.isAuth;
+  constructor(public authService: AuthService) {
   }
 
-  /**
-   * Method to signout
-   */
-  onClickSignOut() {
+  ngOnInit(): void {
+    this.isAuth = this.authService.isAuth();
+    this.user = this.authService.getUser();
+  }
+
+
+  onClickSignOut(): void {
     this.authService.signOut();
   }
 }
