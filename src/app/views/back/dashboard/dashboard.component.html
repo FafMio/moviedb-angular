@@ -7,9 +7,9 @@
         <div class="col-12">
           <div class="row g-4">
 
-            <app-dashboard-card class="col-4" [counter]="movieCount.toString()" [icon]="'film'" [label]="'Movies'"></app-dashboard-card>
-            <app-dashboard-card class="col-4" [counter]="unverifiedCount.toString()" [icon]="'film'" [label]="'Movies pending'" [bgColor]="'warning'" [textColor]="'warning'"></app-dashboard-card>
-            <app-dashboard-card class="col-4" [counter]="userCount.toString()" [label]="'Users'"></app-dashboard-card>
+            <app-dashboard-card *ngIf="movieCount != undefined" class="col-4" [counter]="movieCount.toString()" [icon]="'film'" [label]="'Movies'"></app-dashboard-card>
+            <app-dashboard-card *ngIf="unverifiedCount != undefined" class="col-4" [counter]="unverifiedCount.toString()" [icon]="'film'" [label]="'Movies pending'" [bgColor]="'warning'" [textColor]="'warning'"></app-dashboard-card>
+            <app-dashboard-card *ngIf="userCount != undefined" class="col-4" [counter]="userCount.toString()" [label]="'Users'"></app-dashboard-card>
 
           </div>
         </div>
@@ -25,7 +25,7 @@
                   <span class="badge bg-warning bg-opacity-10 text-warning me-2">{{ unverifiedCount }}</span>
                 </h5>
                 <div>
-                  <a href="/movies/add" class="btn btn-sm btn-primary mb-0 me-2">Add New</a>
+                  <a routerLink="/movies/add" class="btn btn-sm btn-primary mb-0 me-2">Add New</a>
                   <span (click)="showUnverified = !showUnverified" class="btn btn-sm mb-0 me-2" [class]="{'btn-warning': showUnverified, 'btn-outline-warning': !showUnverified}">{{ showUnverified ? 'Hide' : 'Show' }} unverified</span>
                 </div>
               </div>
@@ -36,12 +36,12 @@
                 <table class="table align-middle p-4 mb-0 table-hover table-shrink">
                   <thead class="table-dark">
                   <tr>
-                    <th scope="col" class="border-0 rounded-start">Title</th>
-                    <th scope="col" class="border-0">Release Date</th>
-                    <th scope="col" class="border-0">Origin Country</th>
-                    <th scope="col" class="border-0">Categories</th>
-                    <th scope="col" class="border-0">Status</th>
-                    <th scope="col" class="border-0 rounded-end">Action</th>
+                    <th scope="col" class="col-3 border-0 rounded-start">Title</th>
+                    <th scope="col" class="col-1 border-0">Release Date</th>
+                    <th scope="col" class="col-2 border-0">Origin Country</th>
+                    <th scope="col" class="col-3 border-0">Categories</th>
+                    <th scope="col" class="col-1 border-0">Status</th>
+                    <th scope="col" class="col-2 border-0 rounded-end">Action</th>
                   </tr>
                   </thead>
 

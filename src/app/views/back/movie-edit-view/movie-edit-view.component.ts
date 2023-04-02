@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MoviesService} from '../../services/movies/movies.service';
-import {Movie} from '../../models/movie.model';
-import {Category} from '../../models/category.model';
-import {CategoriesService} from "../../services/categories/categories.service";
+import {MoviesService} from '../../../services/movies/movies.service';
+import {Movie} from '../../../models/movie.model';
+import {Category} from '../../../models/category.model';
+import {CategoriesService} from '../../../services/categories/categories.service';
 
 @Component({
   selector: 'app-movie-edit-view',

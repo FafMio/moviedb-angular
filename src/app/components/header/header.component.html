@@ -12,7 +12,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav navbar-nav-scroll mx-auto">
+        <ul class="navbar-nav navbar-nav-scroll ms-auto">
           <li class="nav-item dropdown">
             <a href="#" class="nav-link active">Accueil</a>
           </li>
@@ -20,10 +20,14 @@
           <li *ngIf="authService.isAdmin() || authService.isModerator()" class="nav-item">
             <a class="nav-link" href="/dashboard">Dashboard</a>
           </li>
+
+<!--          <li class="nav-item">-->
+<!--            <a href="/suggest" class="nav-link">Suggest a movie</a>-->
+<!--          </li>-->
         </ul>
       </div>
 
-      <div class="nav flex-nowrap align-items-center">
+      <div class="nav flex-nowrap align-items-center ms-3">
         <div *ngIf="!isAuth" class="nav-item d-none d-md-block btn-group">
           <a href="/login" class="btn btn-sm btn-info mb-0">Sign In</a>
           <a href="/register" class="btn btn-sm btn-outline-primary mb-0">Sign Up</a>
@@ -56,9 +60,6 @@
           </ul>
           <!-- Profile dropdown END -->
         </div>
-
-
-
       </div>
 
     </div>

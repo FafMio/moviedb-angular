@@ -16,8 +16,6 @@ import {AlertModule} from 'ngx-bootstrap/alert';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {MoviesViewComponent} from './views/front/movies-view/movies-view.component';
-import {MovieNewViewComponent} from './views/movies-new-view/movie-new-view.component';
-import {MovieEditViewComponent} from './views/movie-edit-view/movie-edit-view.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { CategoryBadgeComponent } from './components/category-badge/category-badge.component';
@@ -28,6 +26,8 @@ import { NewCategoryComponent } from './views/back/category/new-category/new-cat
 import { DashboardComponent } from './views/back/dashboard/dashboard.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 import { MovieLineComponent } from './components/dashboard/table/movie-line/movie-line.component';
+import {MovieEditViewComponent} from './views/back/movie-edit-view/movie-edit-view.component';
+import {MovieCreateViewComponent} from './views/back/movie-create-view/movie-create-view.component';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { MovieLineComponent } from './components/dashboard/table/movie-line/movi
     HeaderComponent,
     MoviesViewComponent,
     MovieDetailsViewComponent,
-    MovieNewViewComponent,
+    MovieCreateViewComponent,
     NotFoundViewComponent,
     MovieEditViewComponent,
     CategoryCardComponent,

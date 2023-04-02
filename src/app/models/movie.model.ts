@@ -1,4 +1,4 @@
-import {Category} from "./category.model";
+import {Category} from './category.model';
 
 export class Movie {
 
@@ -19,7 +19,7 @@ export class Movie {
   private _categories: Array<Category>;
 
   constructor(
-    id: number,
+    id: number = null,
     title: string,
     synopsis: number,
     releasedAt: Date,

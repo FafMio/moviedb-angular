@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MoviesService} from '../../../services/movies/movies.service';
 import {UsersService} from '../../../services/users/users.service';
 import {Movie} from '../../../models/movie.model';
-import {AuthService} from "../../../services/auth/auth.service";
+import {AuthService} from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',

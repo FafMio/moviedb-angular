@@ -13,7 +13,7 @@
 </td>
 <td>
   <div class="d-flex gap-2">
-    <span *ngIf="authService.isAdmin()" (click)="onClickDelete()" class="btn btn-light btn-round mb-0">
+    <span *ngIf="authService.isModerator() || authService.isAdmin()" (click)="onClickDelete()" class="btn btn-danger-soft btn-round mb-0">
       <div *ngIf="isDeleting" class="spinner-border spinner-border-sm text-danger" role="status"></div>
       <i *ngIf="!isDeleting" class="bi bi-{{ iconDelete }}"></i>
     </span>

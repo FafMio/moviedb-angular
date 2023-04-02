@@ -30,7 +30,24 @@ export class MovieLineComponent implements OnInit {
 
   onClickDelete(): void {
     this.isDeleting = true;
-    this.moviesService.deleteMovie(this.movie.id);
+    this.moviesService.deleteMovie(this.movie.id).subscribe(
+      (res: any) => {
+        if (this.movie.isVerified) {
+          for (let i = 0; i < this.moviesService.movieSubject.getValue().length; i++) {
+            if (this.moviesService.movies[i].id === this.movie.id) {
+              this.moviesService.movies.splice(i, 1);
+            }
+          }
+        } else {
+          for (let i = 0; i < this.moviesService.movieUnverifiedSubject.getValue().length; i++) {
+            if (this.moviesService.movieUnverified[i].id === this.movie.id) {
+              this.moviesService.movieUnverified.splice(i, 1);
+            }
+          }
+        }
+
+        this.moviesService.callForTeam();
+      });
   }
 
   onClickVerify(): void {

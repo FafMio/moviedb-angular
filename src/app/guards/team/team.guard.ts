@@ -20,7 +20,7 @@ export class TeamGuard implements CanActivate {
     if (this.authService.isAdmin() || this.authService.isModerator()) {
       return true;
     }
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/']);
   }
 
 }

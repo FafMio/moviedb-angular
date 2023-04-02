@@ -79,7 +79,7 @@ export class MoviesService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
     const allMovies: Array<Movie> = [];
     this.httpClient
-      .get('http://127.0.0.1:8080/api/movie/unverified', {headers})
+      .get('http://127.0.0.1:8080/api/movie/unverified?size=50&sortBy=id&sortDirection=DESC', {headers})
       .subscribe(
         (res: any) => {
           const data = res.content;
@@ -115,33 +115,17 @@ export class MoviesService {
     return this.httpClient.get('http://127.0.0.1:8080/api/movie/' + fId);
   }
 
-  addMovie(movie: any): void {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.httpClient.post('http://127.0.0.1:8080/api/movie', movie, {headers}).subscribe(
-      (res: any) => {
-        this.movies.push(res);
-        this.movieSubject.next(this.getAllMovies());
-      },
-      (err) => {
-        console.log('error: ', err);
-      }
-    );
+  addMovie(movie: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.authService.getUser().accessToken
+    });
+    return this.httpClient.post('http://127.0.0.1:8080/api/movie/', movie, {headers});
   }
 
-  deleteMovie(fId: number): Subscription {
+  deleteMovie(fId: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
-    return this.httpClient.delete('http://127.0.0.1:8080/api/movie/' + fId, {headers})
-      .subscribe(
-        (res: any) => {
-          for (let i = 0; i < this.movieSubject.getValue().length; i++) {
-            if (this.movies[i].id === fId) {
-              this.movies.splice(i, 1);
-              this.movieSubject.next(this.movies);
-              this.movieUnverifiedSubject.next(this.movieUnverified);
-            }
-          }
-        }
-      );
+    return this.httpClient.delete('http://127.0.0.1:8080/api/movie/' + fId, {headers});
   }
 
   updateMovie(movie: Movie): void {
