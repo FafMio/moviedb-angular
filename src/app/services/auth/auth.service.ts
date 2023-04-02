@@ -24,7 +24,7 @@ export class AuthService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     return this.httpClient.post(
-      'http://127.0.0.1:8080/api/auth/signin',
+      'https://api.allocinoche.top/api/auth/signin',
       {
         username: fUsername,
         password: fPassword
@@ -37,7 +37,7 @@ export class AuthService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     return this.httpClient.post(
-      'http://127.0.0.1:8080/api/auth/signup/',
+      'https://api.allocinoche.top/api/auth/signup/',
       {
         username,
         email,

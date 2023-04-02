@@ -43,7 +43,7 @@ export class MoviesService {
   getAllMovies(category: string = null): Array<Movie> {
     const allMovies: Array<Movie> = [];
     this.httpClient
-      .get('http://127.0.0.1:8080/api/movie/' + (category != null ? 'category/' + category : '') + '?size=50&sortBy=id&sortDirection=DESC')
+      .get('https://api.allocinoche.top/api/movie/' + (category != null ? 'category/' + category : '') + '?size=50&sortBy=id&sortDirection=DESC')
       .subscribe(
         (res: any) => {
           const data = res.content;
@@ -79,7 +79,7 @@ export class MoviesService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
     const allMovies: Array<Movie> = [];
     this.httpClient
-      .get('http://127.0.0.1:8080/api/movie/unverified?size=50&sortBy=id&sortDirection=DESC', {headers})
+      .get('https://api.allocinoche.top/api/movie/unverified?size=50&sortBy=id&sortDirection=DESC', {headers})
       .subscribe(
         (res: any) => {
           const data = res.content;
@@ -112,7 +112,7 @@ export class MoviesService {
   }
 
   getMovie(fId: number): Observable<any> {
-    return this.httpClient.get('http://127.0.0.1:8080/api/movie/' + fId);
+    return this.httpClient.get('https://api.allocinoche.top/api/movie/' + fId);
   }
 
   addMovie(movie: any): Observable<any> {
@@ -120,12 +120,12 @@ export class MoviesService {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + this.authService.getUser().accessToken
     });
-    return this.httpClient.post('http://127.0.0.1:8080/api/movie/', movie, {headers});
+    return this.httpClient.post('https://api.allocinoche.top/api/movie/', movie, {headers});
   }
 
   deleteMovie(fId: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
-    return this.httpClient.delete('http://127.0.0.1:8080/api/movie/' + fId, {headers});
+    return this.httpClient.delete('https://api.allocinoche.top/api/movie/' + fId, {headers});
   }
 
   updateMovie(movie: Movie): void {
@@ -146,7 +146,7 @@ export class MoviesService {
     };
 
     this.httpClient.post(
-      'http://127.0.0.1:8080/api/movie/' + movie.id,
+      'https://api.allocinoche.top/api/movie/' + movie.id,
       data,
       {headers}
     ).subscribe(
@@ -157,25 +157,25 @@ export class MoviesService {
   }
 
   countMovies(): Observable<any> {
-    return this.httpClient.get('http://127.0.0.1:8080/api/movie/count/');
+    return this.httpClient.get('https://api.allocinoche.top/api/movie/count/');
   }
 
   countUnverifiedMovies(): Observable<any> {
-    return this.httpClient.get('http://127.0.0.1:8080/api/movie/countUnverified/');
+    return this.httpClient.get('https://api.allocinoche.top/api/movie/countUnverified/');
   }
 
   countVerifiedMovies(): Observable<any> {
-    return this.httpClient.get('http://127.0.0.1:8080/api/movie/countVerified/');
+    return this.httpClient.get('https://api.allocinoche.top/api/movie/countVerified/');
   }
 
   verifyMovie(id: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
-    return this.httpClient.post('http://127.0.0.1:8080/api/movie/verify/' + id, null, {headers});
+    return this.httpClient.post('https://api.allocinoche.top/api/movie/verify/' + id, null, {headers});
   }
 
   unverifyMovie(id: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
-    return this.httpClient.post('http://127.0.0.1:8080/api/movie/unverify/' + id, null, {headers});
+    return this.httpClient.post('https://api.allocinoche.top/api/movie/unverify/' + id, null, {headers});
   }
 
 }

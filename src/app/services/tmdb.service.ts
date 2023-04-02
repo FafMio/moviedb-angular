@@ -16,13 +16,7 @@ export class TmdbService {
   }
 
   getCasts(tmdbId: string): Observable<any> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
     const url = this.baseUri + 'movie/' + tmdbId + '/credits?' + this.endUri;
-    console.log(url);
-    return this.httpClient.post(
-      url,
-      null,
-      {headers});
+    return this.httpClient.get(url);
   }
 }

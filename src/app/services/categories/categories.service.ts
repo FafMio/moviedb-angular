@@ -29,7 +29,7 @@ export class CategoriesService {
   getAllCategories(): Array<Category> {
     const array: Array<Category> = [];
     this.httpClient
-      .get('http://127.0.0.1:8080/api/category/?size=50')
+      .get('https://api.allocinoche.top/api/category/?size=50')
       .subscribe(
         (res: any) => {
           const data = res.content;
@@ -47,13 +47,13 @@ export class CategoriesService {
   }
 
   getCategory(id: number): Observable<any> {
-    return this.httpClient.get('http://127.0.0.1:8080/api/category/' + id);
+    return this.httpClient.get('https://api.allocinoche.top/api/category/' + id);
   }
 
   addCategory(category: any): void {
     console.log(category);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.httpClient.post('http://127.0.0.1:8080/api/category', category, {headers}).subscribe(
+    this.httpClient.post('https://api.allocinoche.top/api/category', category, {headers}).subscribe(
       (res: any) => {
         console.log(res);
         this.categories.push(res);
@@ -66,7 +66,7 @@ export class CategoriesService {
   }
 
   deleteCategory(id: number): Subscription {
-    return this.httpClient.delete('http://127.0.0.1:8080/api/category/' + id)
+    return this.httpClient.delete('https://api.allocinoche.top/api/category/' + id)
       .subscribe(
         (res: any) => {
           for (let i = 0; i < this.categorySubject.getValue().length; i++) {
@@ -92,7 +92,7 @@ export class CategoriesService {
     console.log(data);
 
     this.httpClient.put(
-      'http://127.0.0.1:8080/api/category/' + category.id,
+      'https://api.allocinoche.top/api/category/' + category.id,
       data,
       {headers}
     ).subscribe(

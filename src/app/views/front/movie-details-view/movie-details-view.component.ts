@@ -13,6 +13,7 @@ import {TmdbService} from '../../../services/tmdb.service';
 export class MovieDetailsViewComponent implements OnInit {
 
   movie: Movie;
+  casts: Array<any> = new Array<any>();
 
   constructor(
     private moviesService: MoviesService,
@@ -44,9 +45,29 @@ export class MovieDetailsViewComponent implements OnInit {
             );
           }));
 
-        this.tmdbService.getCasts(this.movie.tmdbId).subscribe(res => {
-          console.log(res);
-        });
+        this.tmdbService.getCasts(this.movie.tmdbId).subscribe(
+          result => {
+            this.loadCast(result);
+          },
+          error => {
+
+          }
+        );
       });
+  }
+
+  loadCast(casts: any): void {
+    let counter = 0;
+    for (const cast of casts.cast) {
+      if (counter > 3) {
+        break;
+      }
+      counter++;
+      this.casts.push({
+        name: cast.original_name,
+        image: cast.profile_path,
+      });
+    }
+    console.log(this.casts);
   }
 }

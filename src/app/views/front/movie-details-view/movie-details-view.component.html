@@ -1,37 +1,38 @@
 <app-header></app-header>
-<div class="container mt-3">
+<div class="container mt-3" *ngIf="movie">
 
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/movies">Movies</a></li>
-        <li class="breadcrumb-item active">{{ movie.title }}</li>
-    </ol>
-    <hr>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Movies</a></li>
+    <li class="breadcrumb-item active">{{ movie.title }}</li>
+  </ol>
+  <hr>
 
-    <div class="row">
-        <div class="col-4">
-            <div class="card border-primary">
-                <img src="{{ movie.imageUrl }}" alt="Photo" class="card-img-top">
-
-            </div>
-        </div>
-
-        <div class="col-8">
-            <div class="card border-secondary">
-              <div class="card-body">
-                <h3 class="card-title">{{ movie.title }}</h3>
-                <p class="card-text"><strong class="text-success">Sortie le </strong>{{ movie.releasedAt | date:'dd MMMM y' }}</p>
-              </div>
-                <div class="card-body">
-                    <p class="card-text">{{ movie.synopsis }}</p>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-4 h-100">
+      <div class="card border-primary">
+        <img src="{{ movie.imageUrl }}" alt="Photo" class="card-img-top">
+      </div>
     </div>
 
-<!--  <div class="card card-outline-secondary my-4">-->
-<!--    <div class="card-header">-->
-<!--      Commentaires-->
-<!--    </div>-->
-<!--    <div app-comment *ngFor="let com of this.movie.comments" [comment]=com class="card-body"></div>-->
-<!--  </div>-->
+    <div class="col-8">
+      <div class="card border-secondary h-100">
+        <div class="card-body">
+          <h3 class="card-title">{{ movie.title }}</h3>
+          <p class="card-text"><strong class="text-success">Release
+            date: </strong>{{ movie.releasedAt | date:'dd MMMM y' }} | <span class="test-muted"><a
+            href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}">TMDB.org</a></span></p>
+          <app-category-badge *ngFor="let category of movie.categories" [category]="category"></app-category-badge>
+        </div>
+        <div class="card-body h-100">
+          <p class="card-text">{{ movie.synopsis }}</p>
+          <div class="row g-3 h-100">
+            <span class="fs-4 text-white mt-3 mb-0 pb-0">Casts</span>
+            <div class="col-3 mt-0 pt-0" app-cast-card *ngFor="let cast of casts" [image]="cast.image.toString()"
+                 [name]="cast.name"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

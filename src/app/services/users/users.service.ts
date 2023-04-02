@@ -14,6 +14,6 @@ export class UsersService {
 
 
   countUsers(): Observable<any> {
-    return this.httpClient.get('http://127.0.0.1:8080/api/user/count/');
+    return this.httpClient.get('https://api.allocinoche.top/api/user/count/');
   }
 }

@@ -10,10 +10,8 @@
   <div class="card-body px-0 pt-3">
     <h4 class="card-title mt-2"><a href="/movie/{{ movie.id }}" class="btn-link text-reset fw-bold"> {{ movie.title }}</a></h4>
     <p class="card-text"> {{ movie.synopsis|split: 100 }}</p>
-    <!-- Card info -->
     <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
       <li class="nav-item">{{ movie.releasedAt|date }}</li>
-      <li class="nav-item"><a href="https://www.themoviedb.org/movie/{{ movie.tmdbId }}">TMDB.org</a></li>
     </ul>
   </div>
 </div>

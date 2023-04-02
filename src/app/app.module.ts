@@ -28,6 +28,7 @@ import { DashboardCardComponent } from './components/dashboard-card/dashboard-ca
 import { MovieLineComponent } from './components/dashboard/table/movie-line/movie-line.component';
 import {MovieEditViewComponent} from './views/back/movie-edit-view/movie-edit-view.component';
 import {MovieCreateViewComponent} from './views/back/movie-create-view/movie-create-view.component';
+import {CastCardComponent} from './components/cast-card/cast-card.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {MovieCreateViewComponent} from './views/back/movie-create-view/movie-cre
     DashboardComponent,
     DashboardCardComponent,
     MovieLineComponent,
+    CastCardComponent
   ],
   imports: [
     BrowserModule,
