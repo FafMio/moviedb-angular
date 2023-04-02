@@ -1,6 +1,6 @@
 import {AuthService} from '../auth/auth.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Movie} from '../../models/movie.model';
 import {Category} from '../../models/category.model';
@@ -128,32 +128,12 @@ export class MoviesService {
     return this.httpClient.delete('https://api.allocinoche.top/api/movie/' + fId, {headers});
   }
 
-  updateMovie(movie: Movie): void {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
-    const data = {
-      id: movie.id,
-      title: movie.title,
-      synopsis: movie.synopsis,
-      releasedAt: movie.releasedAt,
-      imageUrl: movie.imageUrl,
-      originCountry: movie.originCountry,
-      originCountryShort: movie.originCountryShort,
-      tmdbId: movie.tmdbId,
-      verified: movie.isVerified,
-      categories: movie.categories.map(id => {
-        return id;
-      }),
-    };
-
-    this.httpClient.post(
-      'https://api.allocinoche.top/api/movie/' + movie.id,
-      data,
-      {headers}
-    ).subscribe(
-      (res: any) => {
-        this.movieSubject.next(this.getAllMovies());
-      }
-    );
+  updateMovie(movie: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.authService.getUser().accessToken
+    });
+    return this.httpClient.post('https://api.allocinoche.top/api/movie/' + movie.id, movie, {headers});
   }
 
   countMovies(): Observable<any> {

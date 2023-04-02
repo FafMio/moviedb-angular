@@ -2,6 +2,7 @@ import {UtilsService} from '../../services/utils/utils.service';
 import {AuthService} from '../../services/auth/auth.service';
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../models/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,10 @@ export class HeaderComponent implements OnInit {
   randomUrl: string = UtilsService.randomString(20);
   user: User;
 
-  constructor(public authService: AuthService) {
+  constructor(
+    public authService: AuthService,
+    public router: Router
+  ) {
   }
 
   ngOnInit(): void {

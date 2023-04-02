@@ -104,7 +104,6 @@ export class MovieCreateViewComponent implements OnInit {
         this.isAdded = false;
         this.btnColor = 'danger';
         this.iconIcon = 'exclamation-triangle-fill';
-        console.log('error: ', err);
 
         setTimeout(() => {
           this.resetButton();

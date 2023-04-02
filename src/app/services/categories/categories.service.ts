@@ -1,6 +1,6 @@
 import {AuthService} from '../auth/auth.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subscribable, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Category} from '../../models/category.model';
 
@@ -51,16 +51,11 @@ export class CategoriesService {
   }
 
   addCategory(category: any): void {
-    console.log(category);
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     this.httpClient.post('https://api.allocinoche.top/api/category', category, {headers}).subscribe(
       (res: any) => {
-        console.log(res);
         this.categories.push(res);
         this.categorySubject.next(this.getAllCategories());
-      },
-      (err) => {
-        console.log('error: ', err);
       }
     );
   }
@@ -81,7 +76,6 @@ export class CategoriesService {
 
 
   updateCategory(category: Category): void {
-    console.log(category);
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getUser().accessToken);
     const data = {
       id: category.id,
@@ -89,7 +83,6 @@ export class CategoriesService {
       bgHexColor: category.bgHexColor,
       textHexColor: category.textHexColor,
     };
-    console.log(data);
 
     this.httpClient.put(
       'https://api.allocinoche.top/api/category/' + category.id,

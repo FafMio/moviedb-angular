@@ -13,24 +13,21 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav navbar-nav-scroll ms-auto">
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link active">Accueil</a>
-          </li>
+<!--          <li class="nav-item dropdown">-->
+<!--            <a href="#" class="nav-link" [ngClass]="{'active': router.url == '/'}">Accueil</a>-->
+<!--          </li>-->
 
           <li *ngIf="authService.isAdmin() || authService.isModerator()" class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
+            <a class="nav-link" href="/dashboard" [ngClass]="{'active': router.url == '/dashboard'}">Dashboard</a>
           </li>
 
-<!--          <li class="nav-item">-->
-<!--            <a href="/suggest" class="nav-link">Suggest a movie</a>-->
-<!--          </li>-->
         </ul>
       </div>
 
       <div class="nav flex-nowrap align-items-center ms-3">
-        <div *ngIf="!isAuth" class="nav-item d-none d-md-block btn-group">
-          <a href="/login" class="btn btn-sm btn-info mb-0">Sign In</a>
-          <a href="/register" class="btn btn-sm btn-outline-primary mb-0">Sign Up</a>
+        <div *ngIf="!isAuth" class="nav-item">
+          <a href="/login" class="btn btn-sm btn-info-soft mb-0 me-2">Sign In</a>
+          <a href="/register" class="btn btn-sm btn-outline-primary mb-0 me-2">Sign Up</a>
         </div>
 
         <div *ngIf="isAuth" class="ms-2 ms-md-3 dropdown">
@@ -53,10 +50,10 @@
               <hr>
             </li>
             <!-- Links -->
-            <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+            <li><span class="dropdown-item text-muted text-decoration-line-through"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</span></li>
             <li><span class="dropdown-item text-muted text-decoration-line-through" ><i class="bi bi-gear fa-fw me-2"></i>Account Settings</span></li>
             <li class="dropdown-divider mb-2"></li>
-            <li><a class="dropdown-item text-danger" style="cursor:pointer;" (click)="onClickSignOut()"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+            <li><span class="dropdown-item text-danger" style="cursor:pointer;" (click)="onClickSignOut()"><i class="bi bi-power fa-fw me-2"></i>Sign Out</span></li>
           </ul>
           <!-- Profile dropdown END -->
         </div>

@@ -17,6 +17,13 @@ export class MovieEditViewComponent implements OnInit {
   editMovieForm: FormGroup;
   categories: Array<Category>;
 
+  isLoading = false;
+  isError = false;
+  isEdited = false;
+  btnColor = 'info';
+  iconIcon = 'question';
+  id: number;
+
   constructor(
     private moviesService: MoviesService,
     private route: ActivatedRoute,
@@ -27,11 +34,11 @@ export class MovieEditViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params.id;
+    this.id = this.route.snapshot.params.id;
 
     this.categories = this.categoriesService.getAllCategories();
 
-    this.moviesService.getMovie(id).subscribe(
+    this.moviesService.getMovie(this.id).subscribe(
       (res: any) => {
         this.movie = res;
         this.initForm();
@@ -72,24 +79,59 @@ export class MovieEditViewComponent implements OnInit {
 
   onSubmitEditMovie(): void {
     const formValue = this.editMovieForm.value;
-    this.movie.title = formValue.title;
-    this.movie.imageUrl = formValue.imageUrl;
-    this.movie.originCountry = formValue.originCountry;
-    this.movie.originCountryShort = formValue.originCountryShort;
-    this.movie.releasedAt = formValue.releasedAt;
-    this.movie.synopsis = formValue.synopsis;
-    this.movie.tmdbId = formValue.tmdbId;
-    console.log(formValue.categories);
+    const movie = {
+      id: this.id,
+      title: formValue.title,
+      synopsis: formValue.synopsis,
+      releasedAt: formValue.releasedAt,
+      imageUrl: formValue.imageUrl,
+      originCountry: formValue.originCountry,
+      originCountryShort: formValue.originCountryShort,
+      tmdbId: formValue.tmdbId,
+      categories: formValue.categories.map(e => {
+        if (typeof e === 'string') {
+          return {id: e};
+        } else {
+          return e;
+        }
+      })
+    };
 
-    this.movie.categories = formValue.categories.map(e => {
-      return {id: e};
-    });
+    console.log(movie);
+    console.log(JSON.stringify(movie));
 
-    this.moviesService.updateMovie(this.movie);
-    setTimeout(() => {
-      this.moviesService.callForTeam();
-      this.router.navigate(['/dashboard']);
-    }, 200);
+    this.moviesService.updateMovie(movie).subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        this.isError = false;
+        this.isEdited = true;
+        this.btnColor = 'success';
+        this.iconIcon = 'check2';
+
+        setTimeout(() => {
+          this.moviesService.callForTeam();
+          this.router.navigate(['/dashboard']);
+        }, 2000);
+      },
+      error => {
+        this.isLoading = false;
+        this.isError = true;
+        this.isEdited = false;
+        this.btnColor = 'danger';
+        this.iconIcon = 'exclamation-triangle-fill';
+
+        setTimeout(() => {
+          this.resetButton();
+        }, 2000);
+      }
+    );
+  }
+
+  resetButton(): void {
+    this.isError = false;
+    this.isEdited = false;
+    this.btnColor = 'info';
+    this.iconIcon = 'question';
   }
 
 }

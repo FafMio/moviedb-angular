@@ -12,7 +12,7 @@
         <div class="col-12">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a routerLink="/dashboard">Movies</a></li>
-            <li class="breadcrumb-item"><a routerLink="/movie/{{ movie.id }}"> #{{ movie.id }}</a></li>
+            <li class="breadcrumb-item">#{{ movie.id }}</li>
             <li class="breadcrumb-item active">Edit</li>
           </ol>
         </div>
@@ -31,7 +31,7 @@
                         id="title"
                         class="form-control"
                         required
-                        maxlength="20"
+                        maxlength="255"
                       >
                     </div>
                   </div>
@@ -129,8 +129,12 @@
               <div class="card-footer">
                 <button
                   type="submit"
-                  class="btn btn-primary btn-block"
-                >Edit</button>
+                  class="btn btn-{{ btnColor }} btn-block"
+                  [ngClass]="{'disabled' : isLoading}">
+                  <span *ngIf="!isLoading && !isError && !isEdited">Edit</span>
+                  <span *ngIf="isEdited || isError"><i class="bi bi-{{ iconIcon }}"></i></span>
+                  <div *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status"></div>
+                </button>
               </div>
             </form>
           </div>
